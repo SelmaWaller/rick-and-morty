@@ -1,0 +1,14 @@
+@mixin calcRem($font-size) {
+  font-size: $font-size / 16 + rem;
+}
+
+@mixin gradientText($background) {
+  background-image: $background;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@mixin mainFont($font-family) {
+  font-family: 'Cabin', sans-serif;
+}

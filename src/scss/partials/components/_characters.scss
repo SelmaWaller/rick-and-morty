@@ -1,0 +1,61 @@
+.filteredChars {
+  overflow: auto;
+  position: relative;
+  word-wrap: break-word;
+  margin: 15px;
+  max-width: 610px;
+  max-width: 400px;
+
+  img {
+    width: 100%;
+  }
+}
+
+.charSpecific {
+  max-width: 1000px;
+  margin: auto;
+  margin-bottom: 139px;
+
+  h2 {
+    @include calcRem(30);
+  }
+
+  img {
+    float: right;
+    padding: 20px;
+    max-width: 100%;
+  }
+
+  p {
+    line-height: 26px;
+    max-width: 300px;
+  }
+
+  span {
+    font-weight: bold;
+  }
+
+  .Collapsible {
+    &__trigger {
+      color: $theme-rick-dark;
+      @include calcRem(18);
+      cursor: pointer;
+    }
+
+    .is-closed::after {
+      content: '\276F';
+      position: absolute;
+      margin-left: 10px;
+      transform: rotate(90deg);
+      transition: 400ms ease;
+    }
+
+    .is-open::after {
+      content: '\276F';
+      position: absolute;
+      margin-left: 10px;
+      transform: rotate(270deg);
+      transition: 400ms ease;
+    }
+  }
+}

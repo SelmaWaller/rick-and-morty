@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css?family=Cabin&display=swap');
+
+::-webkit-scrollbar-corner,
+::-webkit-resizer,
+::-webkit-scrollbar-track {
+  background: none;
+  border: none;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 100px;
+  background: $theme-scrollbar;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: $theme-scrollbar-hover;
+}
+
+::-webkit-input-placeholder,
+::-moz-placeholder,
+:-ms-input-placeholder,
+:-moz-placeholder,
+::-webkit-autofill {
+  color: rgba($theme-gray-solid, 0.8);
+  @include mainFont('Cabin');
+}
+
+::selection {
+  background: $theme-blue;
+}
+
+::-moz-selection {
+  background: $theme-blue;
+}
+
+input:focus,
+button:focus {
+  outline: 0 !important;
+  -webkit-appearance: none;
+}
+
+button {
+  color: $theme-gray-solid;
+}
+
+input:focus {
+  border: none;
+}
+
+body {
+  background: $theme-white-solid;
+  color: $theme-gray-solid;
+  @include mainFont('Cabin');
+}
+
+.particles {
+  touch-action: none;
+  opacity: 0.7;
+  position: absolute;
+  max-width: 100%;
+}
+
+input {
+  @include mainFont('Cabin');
+}
+
+a {
+  color: $theme-gray-solid;
+  text-decoration: none;
+}
+
+li {
+  list-style-type: square;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.boldText {
+  font-weight: bold;
+}
+
+.boxShadow {
+  background: white;
+  box-shadow: $card-shadow;
+}
+
+.textCenter {
+  text-align: center;
+}
+
+.textLeft {
+  padding: 20px;
+}
+
+@supports (display: grid) {
+  .smallCardContainer {
+    display: grid;
+    margin: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+}
+
+@supports (display: grid) {
+  .mediumCardContainer {
+    display: grid;
+    margin: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
+
+@supports (display: grid) {
+  .wideCardContainer {
+    display: grid;
+    margin: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  }
+}
+
+.innerCard {
+  margin: 10px;
+  border-radius: 3px;
+  overflow: auto;
+
+  img {
+    position: relative;
+    max-width: 100%;
+    border-radius: 3px;
+  }
+}
+
+.linkedCard {
+  cursor: pointer;
+  transition: 200ms ease-out;
+
+  &:hover {
+    transform: translateY(-2px);
+    transition: 200ms ease-out;
+    box-shadow: $card-shadow-hover;
+  }
+}
+
+.row::after {
+  content: '';
+  clear: both;
+  display: block;
+}
+
+.postFilter {
+  margin-top: 0;
+  margin-bottom: 0;
+
+  input {
+    background: none;
+    padding: 10px 0 5px;
+    margin-left: 7px;
+    font-weight: bold;
+    @include calcRem(18);
+    border: none;
+    border-bottom: 1px solid rgba($theme-gray-solid, 0.5);
+    color: rgba($theme-gray-solid, 0.9);
+
+    &::placeholder {
+      font-weight: normal;
+      color: rgba($theme-gray-solid, 0.5);
+    }
+  }
+}

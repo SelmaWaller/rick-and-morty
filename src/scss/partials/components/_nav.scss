@@ -1,0 +1,115 @@
+.navbar {
+  display: flex;
+  img {
+    position: absolute;
+    max-width: 30px;
+    margin: 30px 0 0 20px;
+    border-radius: 100%;
+    opacity: 0.9;
+  }
+  ul {
+    display: flex;
+    margin-bottom: 15px;
+
+    li {
+      list-style: none;
+      margin: 20px;
+      font-weight: bold;
+      @include calcRem(18);
+      position: relative;
+      transition: 200ms ease-out;
+
+      &:nth-child(1) {
+        padding-left: 180px;
+      }
+    }
+  }
+
+  a {
+    color: $theme-black-solid;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: 200ms ease-out;
+    opacity: 0.8;
+
+    &:hover {
+      opacity: 1;
+      transition: 200ms ease-out;
+    }
+  }
+
+  button {
+    position: absolute;
+    margin: 35px 0 0 25px;
+    padding-left: 40px;
+    font-family: 'Cabin', sans-serif;
+    @include calcRem(18);
+    z-index: 999;
+    opacity: 0.8;
+    color: $theme-black-solid;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: 200ms ease-out;
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 1;
+      transition: 200ms ease-out;
+    }
+
+    &:focus {
+      border: none;
+    }
+  }
+}
+
+.userInfo {
+  position: relative;
+  top: -64px;
+  left: 19px;
+  z-index: 999;
+  touch-action: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+
+  &:hover .loggedInAs {
+    display: block;
+    opacity: 1;
+  }
+}
+
+.loggedInAs {
+  position: absolute;
+  background: $hover-title-gradient;
+  color: rgba($theme-white-solid, 0.8);
+  @include calcRem(14);
+  min-width: 160px;
+  margin: 48px 0 0 0px;
+  box-shadow: $card-shadow;
+  border-radius: 3px;
+  cursor: default;
+  z-index: 999;
+  opacity: 0;
+  display: none;
+  animation: userTitle 200ms;
+
+  p {
+    text-align: center;
+    padding: 10px;
+    margin: 0;
+  }
+
+  .titlePointer {
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: -8px;
+    left: 10px;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid $hover-title-solid;
+  }
+}

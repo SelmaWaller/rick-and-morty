@@ -1,0 +1,67 @@
+.about {
+  padding: 20px;
+
+  .Collapsible {
+    background: $theme-rick-light;
+    padding: 10px 0 0;
+    border: 1px solid $theme-rick-light;
+    margin: 20px auto;
+    width: 95%;
+    text-align: center;
+    max-width: 100%;
+
+    &__trigger {
+      cursor: pointer;
+      @include calcRem(18);
+    }
+
+    .is-closed::after {
+      content: '\276F';
+      position: absolute;
+      margin-left: 10px;
+      transform: rotate(90deg);
+      transition: 400ms ease;
+    }
+
+    .is-open::after {
+      content: '\276F';
+      position: absolute;
+      margin-left: 10px;
+      transform: rotate(270deg);
+      transition: 400ms ease;
+    }
+
+    &__contentOuter {
+      margin: 5px;
+    }
+
+    &__contentInner {
+      margin-top: 10px;
+      padding: 10px 15px;
+      background: #ffffffde;
+      p {
+        margin: 0;
+        @include calcRem(16);
+      }
+    }
+  }
+}
+
+.aboutImage {
+  background-image: url('./../../images/rickstoilet.jpg');
+  background-size: 190%;
+  background-repeat: no-repeat;
+  background-position: -220px 0;
+  animation: aboutImage 40s infinite linear;
+}
+
+@keyframes aboutImage {
+  0%,
+  100% {
+    background-position: 0% 0%;
+  }
+
+  50% {
+    background-position: 100% 0%;
+  }
+}

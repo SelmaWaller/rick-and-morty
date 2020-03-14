@@ -1,0 +1,84 @@
+.loginContainer {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: $theme-rick-gradient-light;
+  z-index: -1;
+
+  h1 {
+    text-transform: uppercase;
+    color: $theme-gray-solid;
+    margin: -20px 0 30px;
+  }
+
+  h4 {
+    @include calcRem(18);
+    font-weight: bold;
+    color: $theme-gray-solid;
+    text-align: left;
+    margin: 30px 0 5px -10px;
+
+    span {
+      font-weight: normal;
+      @include gradientText($theme-rick-gradient);
+      animation: cardGradient 5s infinite;
+    }
+  }
+
+  .loginCard {
+    width: 250px;
+    padding: 60px 30px 30px;
+    background: rgba($theme-white-solid, 0.3);
+    position: relative;
+    display: block;
+    align-items: center;
+    justify-content: center;
+    animation: login 6s infinite;
+
+    .form {
+      position: relative;
+      z-index: 99;
+    }
+
+    input {
+      @include calcRem(16);
+      border: none;
+      padding: 10px;
+      box-shadow: $card-shadow;
+      margin: 5px 0 5px -10px;
+      width: 100%;
+      background: $theme-skyblue;
+      border-radius: 3px;
+    }
+
+    .error__hide {
+      display: none;
+    }
+
+    .loginButton {
+      @include mainFont('Cabin');
+      color: $theme-white-solid;
+      text-transform: uppercase;
+      border: none;
+      margin: 30px 0 10px;
+      padding: 5px 10px;
+      border-radius: 3px;
+      @include calcRem(18);
+      text-align: center;
+      background: $theme-gray-solid;
+      cursor: pointer;
+
+      &:disabled {
+        opacity: 0.8;
+        cursor: not-allowed;
+      }
+    }
+
+    img {
+      max-width: 120px;
+      -webkit-user-drag: none;
+    }
+  }
+}
