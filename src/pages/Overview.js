@@ -18,7 +18,7 @@ export default class Overview extends Component {
 
   componentDidMount() {
     axios
-      .get(HEROKU_BYPASS_CORS + RICK_AND_MORTY_API, {
+      .get(HEROKU_BYPASS_CORS + RICK_AND_MORTY_API + '?page=24', {
         cancelToken: this.state.cancelSource.token,
       })
       .then(showResult => {
