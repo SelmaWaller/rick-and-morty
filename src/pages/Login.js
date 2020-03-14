@@ -81,7 +81,7 @@ export default class Login extends Component {
             <input
               onChange={this.handleChange}
               id="password"
-              type="text"
+              type="password"
               name="password"
               placeholder="••••••••"
             />
