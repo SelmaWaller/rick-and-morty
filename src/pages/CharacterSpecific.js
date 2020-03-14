@@ -62,13 +62,18 @@ export default class CharacterSpecific extends Component {
 
   render() {
     const {showData, episodeData} = this.state;
-    const next = this.props.match.params.id++ + 1;
-    const prev = this.props.match.params.id-- - 2;
+    let charId = this.props.match.params.id;
+    const next = charId++ + 1;
+    const prev = charId-- - 2;
     let nextChar = () => {
-      window.location = `/character-specific/${next}`;
+      charId <= 492
+        ? (window.location = `/character-specific/${next}`)
+        : window.location.reload();
     };
     let prevChar = () => {
-      window.location = `/character-specific/${prev}`;
+      charId >= 2
+        ? (window.location = `/character-specific/${prev}`)
+        : window.location.reload();
     };
 
     return (
