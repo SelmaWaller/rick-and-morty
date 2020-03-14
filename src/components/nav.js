@@ -1,7 +1,7 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 
-import userImg from './../components/images/userImg.png';
+import userImg from './../images/userImg.png';
 
 const Navigation = ({title}) => {
   return (
