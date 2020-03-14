@@ -26,7 +26,7 @@
   }
 
   p {
-    line-height: 26px;
+    line-height: 20px;
     max-width: 300px;
   }
 
@@ -55,6 +55,10 @@
       margin-left: 10px;
       transform: rotate(270deg);
       transition: 400ms ease;
+    }
+
+    p {
+      line-height: 14px;
     }
   }
 }

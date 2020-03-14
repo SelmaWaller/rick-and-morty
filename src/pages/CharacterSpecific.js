@@ -1,15 +1,22 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 
-import {HEROKU_BYPASS_CORS, RICK_AND_MORTY_API} from '../constants/constants';
+import {
+  HEROKU_BYPASS_CORS,
+  RICK_AND_MORTY_API,
+  RICK_AND_MORTY_EPISODE_API,
+} from '../constants/constants';
 import Collapsible from 'react-collapsible';
 
+import Episodes from './../components/episodes';
 const CancelToken = axios.CancelToken;
 
 export default class CharacterSpecific extends Component {
   state = {
     cancelSource: CancelToken.source(),
     showData: undefined,
+    appearances: '',
+    episodeData: undefined,
   };
 
   componentDidMount() {
@@ -24,19 +31,36 @@ export default class CharacterSpecific extends Component {
         console.log(specificResult);
         this.setState({
           showData: specificResult.data,
+          appearances: String(specificResult.data.episode)
+            .split('https://rickandmortyapi.com/api/episode/')
+            .join(''),
         });
+        this.episodeNames(this.state.appearances);
+        console.log(this.state.appearances);
       })
       .catch(err => {
         console.log(err);
       });
   }
 
+  episodeNames = name => {
+    axios
+      .get(HEROKU_BYPASS_CORS + RICK_AND_MORTY_EPISODE_API + name)
+      .then(episodeResult => {
+        console.log(episodeResult);
+        this.setState({
+          episodeData: episodeResult.data,
+        });
+        console.log(this.state.episodeData);
+      });
+  };
+
   componentWillUnmount() {
     this.state.cancelSource.cancel('Cancelled by unmount');
   }
 
   render() {
-    const {showData} = this.state;
+    const {showData, episodeData} = this.state;
 
     return (
       <div className="innerCard boxShadow textLeft charSpecific">
@@ -62,13 +86,6 @@ export default class CharacterSpecific extends Component {
             <p>
               Created: <span>{showData.created}</span>
             </p>
-            <Collapsible trigger="Episode appearances">
-              <p>
-                {String(showData.episode)
-                  .split('https://rickandmortyapi.com/api/episode/')
-                  .join(' E')}
-              </p>
-            </Collapsible>
           </>
         ) : (
           <>
@@ -78,6 +95,21 @@ export default class CharacterSpecific extends Component {
               <h2>Waiting for data...</h2>
             </div>
           </>
+        )}
+        {episodeData !== undefined ? (
+          <Collapsible trigger="Episode appearances">
+            {episodeData.length > 1 ? (
+              episodeData.map((value, index) => {
+                return <Episodes key={index} episode={value.name} />;
+              })
+            ) : (
+              <>
+                <Episodes episode={episodeData.name} />
+              </>
+            )}
+          </Collapsible>
+        ) : (
+          <></>
         )}
       </div>
     );
