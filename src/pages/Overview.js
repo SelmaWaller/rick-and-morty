@@ -7,12 +7,10 @@ import {HEROKU_BYPASS_CORS, RICK_AND_MORTY_API} from './../constants/constants';
 import Characters from './../components/characters';
 
 const CancelToken = axios.CancelToken;
-const randomNumber = Math.floor(Math.random() * 493) + 1;
 
 export default class Overview extends Component {
   state = {
     cancelSource: CancelToken.source(),
-    random: randomNumber,
     showData: undefined,
     filteredResults: [],
     isFiltered: false,
@@ -53,7 +51,8 @@ export default class Overview extends Component {
   };
 
   render() {
-    const {random, showData, isFiltered, filteredResults} = this.state;
+    const {showData, isFiltered, filteredResults} = this.state;
+    const random = Math.floor(Math.random() * 493) + 1;
 
     return (
       <>
