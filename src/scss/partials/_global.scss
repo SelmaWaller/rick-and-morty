@@ -156,6 +156,7 @@ li {
 .postFilter {
   margin-top: 0;
   margin-bottom: 0;
+  overflow: hidden;
 
   input {
     background: none;
@@ -170,6 +171,22 @@ li {
     &::placeholder {
       font-weight: normal;
       color: rgba($theme-gray-solid, 0.5);
+    }
+  }
+
+  button {
+    @include mainFont('Cabin');
+    background: none;
+    padding: 10px 0 5px 2px;
+    margin: 10px 0 -10px 7px;
+    font-weight: bold;
+    @include calcRem(18);
+    border: none;
+    color: rgba($theme-gray-solid, 0.9);
+    cursor: pointer;
+
+    span {
+      @include calcRem(15);
     }
   }
 }
