@@ -1,0 +1,50 @@
+@keyframes cardGradient {
+  0%,
+  100% {
+    background-size: 200% 200%;
+    background-position: 0% 100%;
+  }
+  50% {
+    background-size: 100% 100%;
+    background-position: 50% 50%;
+  }
+}
+
+@keyframes userTitle {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes login {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes aboutImage {
+  0%,
+  100% {
+    background-position: 0% 0%;
+  }
+
+  50% {
+    background-position: 100% 0%;
+  }
+}
