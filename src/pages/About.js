@@ -12,7 +12,7 @@ export default class About extends Component {
             <p>I had to</p>
           </Collapsible>
           <Collapsible trigger="Which episode is your favorite?">
-            <p>The Ricklantis Mixup/Rick's Toilet</p>
+            <p>The Ricklantis Mixup/The Old Man and the Seat</p>
           </Collapsible>
           <Collapsible trigger="Do you have a favorite character?">
             <p>Doofus Rick</p>
