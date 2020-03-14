@@ -66,7 +66,7 @@ export default class CharacterSpecific extends Component {
               <p>
                 {String(showData.episode)
                   .split('https://rickandmortyapi.com/api/episode/')
-                  .join(' ')}
+                  .join(' E')}
               </p>
             </Collapsible>
           </>
