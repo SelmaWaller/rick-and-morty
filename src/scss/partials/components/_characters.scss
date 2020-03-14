@@ -36,12 +36,13 @@
 
   .Collapsible {
     &__trigger {
-      color: $theme-rick-dark;
+      @include gradientText($theme-rick-gradient);
       @include calcRem(18);
       cursor: pointer;
     }
 
     .is-closed::after {
+      @include gradientText($theme-rick-gradient);
       content: '\276F';
       position: absolute;
       margin-left: 10px;
@@ -50,6 +51,7 @@
     }
 
     .is-open::after {
+      @include gradientText($theme-rick-gradient);
       content: '\276F';
       position: absolute;
       margin-left: 10px;
@@ -60,5 +62,14 @@
     p {
       line-height: 14px;
     }
+  }
+}
+
+.charSpecific {
+  .postFilter {
+    width: 100%;
+    margin-bottom: 10px;
+    display: flex;
+    @include gradientText($theme-rick-gradient);
   }
 }

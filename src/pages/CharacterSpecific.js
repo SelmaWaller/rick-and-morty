@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 import axios from 'axios';
 
 import {
@@ -61,56 +62,78 @@ export default class CharacterSpecific extends Component {
 
   render() {
     const {showData, episodeData} = this.state;
+    const next = this.props.match.params.id++ + 1;
+    const prev = this.props.match.params.id-- - 2;
+    let nextChar = () => {
+      window.location = `/character-specific/${next}`;
+    };
+    let prevChar = () => {
+      window.location = `/character-specific/${prev}`;
+    };
 
     return (
-      <div className="innerCard boxShadow textLeft charSpecific">
-        {showData !== undefined ? (
-          <>
-            <img src={showData.image} alt={showData.name} />
-            <h2>{showData.name}</h2>
-            <p>
-              Status: <span>{showData.status}</span>
-            </p>
-            <p>
-              Species: <span>{showData.species}</span>
-            </p>
-            <p>
-              Gender: <span>{showData.gender}</span>
-            </p>
-            <p>
-              Origin: <span>{showData.origin.name}</span>
-            </p>
-            <p>
-              Location: <span>{showData.location.name}</span>
-            </p>
-            <p>
-              Created: <span>{showData.created}</span>
-            </p>
-          </>
-        ) : (
-          <>
-            <div className="charSpecific">
-              <img src="https://via.placeholder.com/300x300" alt="joblogo" />
+      <div className="charSpecific">
+        <div className="postFilter">
+          <div className="prevChar">
+            <Link to={`/character-specific/${prev}`}>
+              <button onClick={prevChar}>« Prev</button>
+            </Link>
+          </div>
+          <div className="nextChar">
+            <Link to={`/character-specific/${next}`}>
+              <button onClick={nextChar}>Next »</button>
+            </Link>
+          </div>
+        </div>
+        <div className="innerCard boxShadow textLeft charSpecific">
+          {showData !== undefined ? (
+            <>
+              <img src={showData.image} alt={showData.name} />
+              <h2>{showData.name}</h2>
+              <p>
+                Status: <span>{showData.status}</span>
+              </p>
+              <p>
+                Species: <span>{showData.species}</span>
+              </p>
+              <p>
+                Gender: <span>{showData.gender}</span>
+              </p>
+              <p>
+                Origin: <span>{showData.origin.name}</span>
+              </p>
+              <p>
+                Location: <span>{showData.location.name}</span>
+              </p>
+              <p>
+                Created: <span>{showData.created}</span>
+              </p>
+            </>
+          ) : (
+            <>
+              <div className="charSpecific">
+                <img src="https://via.placeholder.com/300x300" alt="joblogo" />
 
-              <h2>Waiting for data...</h2>
-            </div>
-          </>
-        )}
-        {episodeData !== undefined ? (
-          <Collapsible trigger="Episode appearances">
-            {episodeData.length > 1 ? (
-              episodeData.map((value, index) => {
-                return <Episodes key={index} episode={value.name} />;
-              })
-            ) : (
-              <>
-                <Episodes episode={episodeData.name} />
-              </>
-            )}
-          </Collapsible>
-        ) : (
-          <></>
-        )}
+                <h2>Waiting for data...</h2>
+              </div>
+            </>
+          )}
+          {episodeData !== undefined ? (
+            <Collapsible trigger="Episode appearances">
+              {episodeData.length > 1 ? (
+                episodeData.map((value, index) => {
+                  return <Episodes key={index} episode={value.name} />;
+                })
+              ) : (
+                <>
+                  <Episodes episode={episodeData.name} />
+                </>
+              )}
+            </Collapsible>
+          ) : (
+            <></>
+          )}
+        </div>
       </div>
     );
   }
