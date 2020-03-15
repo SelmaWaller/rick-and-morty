@@ -21,15 +21,12 @@ export default class CharacterSpecific extends Component {
   };
 
   componentDidMount() {
-    console.log('match', this.props.match);
-
     axios
       .get(
         HEROKU_BYPASS_CORS + RICK_AND_MORTY_API + this.props.match.params.id,
         {cancelToken: this.state.cancelSource.token}
       )
       .then(specificResult => {
-        console.log(specificResult);
         this.setState({
           showData: specificResult.data,
           appearances: String(specificResult.data.episode)
@@ -37,7 +34,6 @@ export default class CharacterSpecific extends Component {
             .join(''),
         });
         this.episodeNames(this.state.appearances);
-        console.log(this.state.appearances);
       })
       .catch(err => {
         console.log(err);
@@ -46,13 +42,16 @@ export default class CharacterSpecific extends Component {
 
   episodeNames = name => {
     axios
-      .get(HEROKU_BYPASS_CORS + RICK_AND_MORTY_EPISODE_API + name)
+      .get(HEROKU_BYPASS_CORS + RICK_AND_MORTY_EPISODE_API + name, {
+        cancelToken: this.state.cancelSource.token,
+      })
       .then(episodeResult => {
-        console.log(episodeResult);
         this.setState({
           episodeData: episodeResult.data,
         });
-        console.log(this.state.episodeData);
+      })
+      .catch(err => {
+        console.log(err);
       });
   };
 
