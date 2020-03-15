@@ -18,9 +18,15 @@ export default class CharacterSpecific extends Component {
     showData: undefined,
     appearances: '',
     episodeData: undefined,
+    characterCount: '',
   };
 
   componentDidMount() {
+    axios.get(HEROKU_BYPASS_CORS + RICK_AND_MORTY_API).then(countResult => {
+      this.setState({
+        characterCount: countResult.data.info.count,
+      });
+    });
     axios
       .get(
         HEROKU_BYPASS_CORS + RICK_AND_MORTY_API + this.props.match.params.id,
@@ -60,12 +66,12 @@ export default class CharacterSpecific extends Component {
   }
 
   render() {
-    const {showData, episodeData} = this.state;
+    const {showData, episodeData, characterCount} = this.state;
     let charId = this.props.match.params.id;
     const next = charId++ + 1;
     const prev = charId-- - 2;
     let nextChar = () => {
-      charId <= 492
+      charId <= characterCount - 1
         ? (window.location = `/character-specific/${next}`)
         : window.location.reload();
     };
