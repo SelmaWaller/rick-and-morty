@@ -42,7 +42,7 @@
       padding: 10px 15px;
       background: #ffffffde;
       p {
-        margin: 0;
+        margin: 5px;
         @include calcRem(16);
       }
     }
