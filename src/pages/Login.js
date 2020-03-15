@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 
 import userImg from './../images/userImg.png';
+import Particles from 'react-particles-js';
+import particleSetup from './../components/particles';
 
 export default class Login extends Component {
   state = {
@@ -47,55 +49,62 @@ export default class Login extends Component {
     const {usernameError, passwordError} = this.state;
 
     return (
-      <div className="loginContainer">
-        <div className="loginCard textCenter innerCard boxShadow">
-          <h1>Log in</h1>
-          <img src={userImg} alt="userImg" />
-          <form onSubmit={this.handleSubmit}>
-            <h4>
-              <label htmlFor="username">
-                USERNAME{' '}
-                <span className={usernameError ? '' : 'error__hide'}>
-                  {' '}
-                  &nbsp;(Johndoe)
-                </span>
-              </label>
-            </h4>
-            <input
-              onChange={this.handleChange}
-              id="username"
-              type="text"
-              name="username"
-              placeholder="Johndoe"
-            />
+      <>
+        <Particles
+          canvasClassName="particles"
+          width="1400px"
+          params={particleSetup}
+        />
+        <div className="loginContainer">
+          <div className="loginCard textCenter innerCard boxShadow">
+            <h1>Log in</h1>
+            <img src={userImg} alt="userImg" />
+            <form onSubmit={this.handleSubmit}>
+              <h4>
+                <label htmlFor="username">
+                  USERNAME{' '}
+                  <span className={usernameError ? '' : 'error__hide'}>
+                    {' '}
+                    &nbsp;(Johndoe)
+                  </span>
+                </label>
+              </h4>
+              <input
+                onChange={this.handleChange}
+                id="username"
+                type="text"
+                name="username"
+                placeholder="Johndoe"
+              />
 
-            <h4>
-              <label htmlFor="password">
-                PASSWORD{' '}
-                <span className={passwordError ? '' : 'error__hide'}>
-                  {' '}
-                  &nbsp;(123456)
-                </span>
-              </label>
-            </h4>
-            <input
-              onChange={this.handleChange}
-              id="password"
-              type="password"
-              name="password"
-              placeholder="••••••••"
-            />
-            <button
-              onClick={this.updateLogin}
-              type="submit"
-              disabled={usernameError || passwordError}
-              className="loginButton"
-            >
-              Log in
-            </button>
-          </form>
+              <h4>
+                <label htmlFor="password">
+                  PASSWORD{' '}
+                  <span className={passwordError ? '' : 'error__hide'}>
+                    {' '}
+                    &nbsp;(123456)
+                  </span>
+                </label>
+              </h4>
+              <input
+                onChange={this.handleChange}
+                id="password"
+                type="password"
+                name="password"
+                placeholder="••••••••"
+              />
+              <button
+                onClick={this.updateLogin}
+                type="submit"
+                disabled={usernameError || passwordError}
+                className="loginButton"
+              >
+                Log in
+              </button>
+            </form>
+          </div>
         </div>
-      </div>
+      </>
     );
   }
 }
