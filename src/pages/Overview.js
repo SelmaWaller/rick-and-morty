@@ -104,7 +104,7 @@ export default class Overview extends Component {
           ) : (
             <>
               {showData !== undefined ? (
-                showData.slice(0, 20).map((value, index) => {
+                showData.map((value, index) => {
                   return (
                     <div key={index}>
                       <Characters
