@@ -81,24 +81,22 @@ export default class Overview extends Component {
           </div>
         </div>
 
-        <div className="mediumCardContainer">
+        <div className="smallCardContainer overview">
           {isFiltered ? (
             <>
               {filteredResults.length > 0 ? (
                 filteredResults.map((value, index) => {
                   return (
-                    <div className="filteredChars" key={index}>
-                      <Characters
-                        key={value.index}
-                        name={value.name}
-                        avatar={value.image}
-                        id={value.id}
-                      />
-                    </div>
+                    <Characters
+                      key={value.index}
+                      name={value.name}
+                      avatar={value.image}
+                      id={value.id}
+                    />
                   );
                 })
               ) : (
-                <div className="innerCard boxShadow filteredChars textLeft">
+                <div className="innerCard boxShadow character textLeft">
                   <h3>No results! Try again later</h3>
                 </div>
               )}
@@ -120,7 +118,7 @@ export default class Overview extends Component {
                 })
               ) : (
                 <>
-                  <div className="filteredChars textLeft blogPosts">
+                  <div className="cardShadow textLeft">
                     <Characters
                       name="Character Name"
                       avatar="https://via.placeholder.com/500x500"
