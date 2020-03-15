@@ -88,7 +88,7 @@ export default class Overview extends Component {
                 filteredResults.map((value, index) => {
                   return (
                     <Characters
-                      key={value.index}
+                      key={index}
                       name={value.name}
                       avatar={value.image}
                       id={value.id}
@@ -108,7 +108,7 @@ export default class Overview extends Component {
                   return (
                     <div key={index}>
                       <Characters
-                        key={value.index}
+                        key={index}
                         name={value.name}
                         avatar={value.image}
                         id={value.id}
