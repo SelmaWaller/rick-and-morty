@@ -53,6 +53,7 @@ export default class Overview extends Component {
   render() {
     const {showData, isFiltered, filteredResults} = this.state;
     const random = Math.floor(Math.random() * 493) + 1;
+    const randomEmoji = random % 2 == 0 ? '🍺' : '🍔';
 
     return (
       <>
@@ -72,8 +73,8 @@ export default class Overview extends Component {
             </form>
             <Link to={`/character-specific/${random}`}>
               <button>
-                <span role="img" aria-label="dice">
-                  🎲&nbsp;&nbsp;{' '}
+                <span role="img" aria-label="random">
+                  {randomEmoji}&nbsp;&nbsp;{' '}
                 </span>{' '}
                 Random
               </button>
