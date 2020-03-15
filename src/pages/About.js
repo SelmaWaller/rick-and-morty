@@ -5,7 +5,7 @@ import Collapsible from 'react-collapsible';
 export default class About extends Component {
   render() {
     return (
-      <div className="wideCardContainer">
+      <div className="about">
         <div className="innerCard boxShadow about textCenter">
           <h2>Frequently never asked questions</h2>
           <Collapsible trigger="Why did you make this website?">
@@ -24,7 +24,6 @@ export default class About extends Component {
             <p>Yes</p>
           </Collapsible>
         </div>
-        <div className="innerCard boxShadow aboutImage"></div>
       </div>
     );
   }

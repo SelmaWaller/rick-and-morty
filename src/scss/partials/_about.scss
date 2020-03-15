@@ -1,5 +1,7 @@
 .about {
+  max-width: 600px;
   padding: 20px;
+  margin: 0 auto;
 
   .Collapsible {
     background: $theme-rick-light;
@@ -48,6 +50,7 @@
 }
 
 .aboutImage {
+  opacity: 0.9;
   background-image: url('./../../images/rickstoilet.jpg');
   background-size: 190%;
   background-repeat: no-repeat;
