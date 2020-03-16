@@ -1,3 +1,31 @@
+.postFilter {
+  .activeButton {
+    cursor: pointer;
+    opacity: 0.9;
+
+    &:hover {
+      color: $theme-black-solid;
+    }
+
+    &__hide {
+      cursor: default;
+      opacity: 0.5;
+      user-select: none;
+    }
+  }
+
+  .pages {
+    display: flex;
+
+    .currentPage {
+      margin-left: 15px;
+      margin-right: 13px;
+      @include calcRem(20);
+      @include gradientText($theme-rick-gradient);
+    }
+  }
+}
+
 .character {
   display: flex;
   align-items: center;
@@ -84,5 +112,9 @@
     margin-bottom: 10px;
     display: flex;
     @include gradientText($theme-rick-gradient);
+
+    button {
+      cursor: pointer;
+    }
   }
 }

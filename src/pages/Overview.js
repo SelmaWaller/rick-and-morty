@@ -15,16 +15,33 @@ export default class Overview extends Component {
     filteredResults: [],
     isFiltered: false,
     searchPhrase: '',
+    toNextPage: undefined,
+    toPrevPage: undefined,
+    page: 1,
   };
 
   componentDidMount() {
+    this.getCharacters(this.state.page, this.state.searchPhrase);
+  }
+
+  getCharacters(page, name) {
     axios
-      .get(HEROKU_BYPASS_CORS + RICK_AND_MORTY_API + '?page=24', {
-        cancelToken: this.state.cancelSource.token,
-      })
+      .get(
+        HEROKU_BYPASS_CORS +
+          RICK_AND_MORTY_API +
+          `?page=` +
+          page +
+          '&name=' +
+          name,
+        {
+          cancelToken: this.state.cancelSource.token,
+        }
+      )
       .then(showResult => {
         this.setState({
           showData: showResult.data.results,
+          toNextPage: showResult.data.info.next,
+          toPrevPage: showResult.data.info.prev,
         });
       })
       .catch(err => {
@@ -37,48 +54,78 @@ export default class Overview extends Component {
   }
 
   handleCharSearch = input => {
-    const {showData} = this.state;
-    let charResults = showData.filter(value => {
-      return value.name
-        .toLowerCase()
-        .includes(input.target.value.toLowerCase());
-    });
     this.setState({
-      filteredResults: charResults,
       searchPhrase: input.target.value,
-      isFiltered: true,
+      page: 1,
     });
+    this.getCharacters(1, input.target.value);
+  };
+
+  nextPage = () => {
+    const nextPage = this.state.page + 1;
+    this.setState({
+      page: nextPage,
+    });
+    this.getCharacters(nextPage, this.state.searchPhrase);
+  };
+
+  prevPage = () => {
+    const prevPage = this.state.page - 1;
+    this.setState({
+      page: prevPage,
+    });
+    this.getCharacters(prevPage, this.state.searchPhrase);
   };
 
   render() {
-    const {showData, isFiltered, filteredResults} = this.state;
+    const {
+      page,
+      toNextPage,
+      toPrevPage,
+      showData,
+      isFiltered,
+      filteredResults,
+    } = this.state;
     const random = Math.floor(Math.random() * 493) + 1;
-    const randomEmoji = random % 2 == 0 ? '🍺' : '🍔';
 
     return (
       <>
         <div className="wideCardContainer">
           <div className="innerCard postFilter">
             <form>
-              <span role="img" aria-label="magnifying-glass">
-                &nbsp; 🔍{' '}
-              </span>
               <input
                 id="filterPosts"
                 type="text"
                 name="filterPosts"
-                placeholder="Search for a character"
+                placeholder={`E.g. "Poopybutthole"`}
                 onChange={this.handleCharSearch}
               />
             </form>
             <Link to={`/character-specific/${random}`}>
-              <button>
-                <span role="img" aria-label="random">
-                  {randomEmoji}&nbsp;&nbsp;{' '}
-                </span>{' '}
-                Random
-              </button>
+              <button className="activeButton">Get a random character</button>
             </Link>
+            <div className="pages">
+              <button
+                className={
+                  toPrevPage !== '' ? 'activeButton' : 'activeButton__hide'
+                }
+                disabled={toPrevPage !== '' ? false : true}
+                onClick={this.prevPage}
+              >
+                Prev
+              </button>
+
+              <button className="currentPage">{page}</button>
+              <button
+                className={
+                  toNextPage !== '' ? 'activeButton' : 'activeButton__hide'
+                }
+                disabled={toNextPage !== '' ? false : true}
+                onClick={this.nextPage}
+              >
+                Next
+              </button>
+            </div>
           </div>
         </div>
 
