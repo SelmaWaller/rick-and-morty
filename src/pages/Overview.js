@@ -97,7 +97,8 @@ export default class Overview extends Component {
                 id="filterPosts"
                 type="text"
                 name="filterPosts"
-                placeholder={`E.g. "Poopybutthole"`}
+                placeholder={`E.g. "Rick"`}
+                autoFocus
                 onChange={this.handleCharSearch}
               />
             </form>
