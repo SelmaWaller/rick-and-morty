@@ -183,7 +183,6 @@ li {
     @include calcRem(18);
     border: none;
     color: rgba($theme-gray-solid, 0.9);
-    cursor: pointer;
 
     span {
       @include calcRem(15);
