@@ -89,6 +89,7 @@ export default class Contact extends Component {
                 </span>
               </label>
               <input
+                autoFocus
                 onChange={this.handleChange}
                 id="firstname"
                 type="text"
