@@ -18,6 +18,7 @@ export default class Overview extends Component {
     toNextPage: undefined,
     toPrevPage: undefined,
     page: 1,
+    pageMax: undefined,
   };
 
   componentDidMount() {
@@ -42,6 +43,7 @@ export default class Overview extends Component {
           showData: showResult.data.results,
           toNextPage: showResult.data.info.next,
           toPrevPage: showResult.data.info.prev,
+          pageMax: showResult.data.info.pages,
         });
       })
       .catch(err => {
@@ -80,6 +82,7 @@ export default class Overview extends Component {
   render() {
     const {
       page,
+      pageMax,
       toNextPage,
       toPrevPage,
       showData,
@@ -116,7 +119,9 @@ export default class Overview extends Component {
                 Prev
               </button>
 
-              <button className="currentPage">{page}</button>
+              <button className="currentPage">
+                {page} of {pageMax}
+              </button>
               <button
                 className={
                   toNextPage !== '' ? 'activeButton' : 'activeButton__hide'
