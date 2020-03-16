@@ -16,8 +16,8 @@ export default class About extends Component {
             <p>The Ricklantis Mixup/The Old Man and the Seat</p>
             <img src={rickstoilet} alt="ricks-toilet" />
           </Collapsible>
-          <Collapsible trigger="Do you have a favorite character?">
-            <p>Doofus Rick</p>
+          <Collapsible trigger="Who is your favorite character?">
+            <p>Krombopulos Michael</p>
           </Collapsible>
           <Collapsible trigger="Do you think Beth is a clone?">
             <p>No</p>
