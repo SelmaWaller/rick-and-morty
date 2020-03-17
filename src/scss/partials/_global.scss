@@ -188,9 +188,5 @@ li {
     @include calcRem(18);
     border: none;
     color: rgba($theme-gray-solid, 0.9);
-
-    span {
-      @include calcRem(15);
-    }
   }
 }

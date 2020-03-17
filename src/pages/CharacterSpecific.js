@@ -18,7 +18,7 @@ export default class CharacterSpecific extends Component {
     showData: undefined,
     appearances: '',
     episodeData: undefined,
-    characterCount: '',
+    currentPage: undefined,
   };
 
   componentDidMount() {
@@ -84,14 +84,32 @@ export default class CharacterSpecific extends Component {
     return (
       <div className="charSpecific">
         <div className="postFilter">
-          <div className="prevChar">
+          <div>
             <Link to={`/character-specific/${prev}`}>
-              <button onClick={prevChar}>« Prev</button>
+              <button
+                disabled={charId === 1 ? true : false}
+                className={charId >= 1 ? 'prevChar' : 'prevChar__hide'}
+                onClick={prevChar}
+              >
+                Prev
+              </button>
             </Link>
           </div>
-          <div className="nextChar">
+          <button className="currentPage">
+            {charId} of {characterCount}
+          </button>
+          <div>
             <Link to={`/character-specific/${next}`}>
-              <button onClick={nextChar}>Next »</button>
+              <button
+                disabled={charId <= characterCount - 1 ? false : true}
+                className={
+                  charId <= characterCount ? 'nextChar' : 'nextChar__hide'
+                }
+                onClick={prevChar}
+                onClick={nextChar}
+              >
+                Next
+              </button>
             </Link>
           </div>
         </div>

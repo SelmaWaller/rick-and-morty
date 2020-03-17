@@ -85,18 +85,18 @@ export default class Overview extends Component {
       <>
         <div className="wideCardContainer">
           <div className="innerCard postFilter">
-            <form>
+            <div>
               <input
-                id="filterPosts"
                 type="text"
-                name="filterPosts"
                 placeholder={`E.g. "Rick"`}
                 autoFocus
                 onChange={this.handleCharSearch}
               />
-            </form>
+            </div>
             <Link to={`/character-specific/${random}`}>
-              <button className="activeButton">Get a random character</button>
+              <button className="activeButton">
+                <span>Get a random character</span>
+              </button>
             </Link>
             <div className="pages">
               <button
