@@ -5,9 +5,9 @@ import {Link} from 'react-router-dom';
 const Characters = props => {
   const {id, name, avatar, status, species, gender, episode} = props;
   return (
-    <div className="innerCard textLeft linkedCard boxShadow character">
+    <div className="innerCard linkedCard boxShadow character">
       <Link to={`/character-specific/${id}`}>
-        <h3>{name}</h3>
+        <h3 className={String(name.length) > 21 ? 'ellipsed' : ''}>{name}</h3>
         <img src={avatar} alt={name} />
         <p>{status}</p>
         <p>{species}</p>

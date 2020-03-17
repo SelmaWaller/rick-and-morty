@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Cabin&display=swap');
 
+* {
+  box-sizing: border-box;
+}
+
 ::-webkit-scrollbar-corner,
 ::-webkit-resizer,
 ::-webkit-scrollbar-track {
@@ -103,8 +107,9 @@ li {
 @supports (display: grid) {
   .smallCardContainer {
     display: grid;
-    margin: 20px;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 20px;
+    margin: 20px 40px;
+    grid-template-columns: repeat(auto-fill, 200px);
   }
 }
 
