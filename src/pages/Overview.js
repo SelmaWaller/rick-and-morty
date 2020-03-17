@@ -12,8 +12,6 @@ export default class Overview extends Component {
   state = {
     cancelSource: CancelToken.source(),
     showData: undefined,
-    filteredResults: [],
-    isFiltered: false,
     searchPhrase: '',
     toNextPage: undefined,
     toPrevPage: undefined,
@@ -80,15 +78,7 @@ export default class Overview extends Component {
   };
 
   render() {
-    const {
-      page,
-      pageMax,
-      toNextPage,
-      toPrevPage,
-      showData,
-      isFiltered,
-      filteredResults,
-    } = this.state;
+    const {page, pageMax, toNextPage, toPrevPage, showData} = this.state;
     const random = Math.floor(Math.random() * 493) + 1;
 
     return (
@@ -136,50 +126,27 @@ export default class Overview extends Component {
         </div>
 
         <div className="smallCardContainer overview">
-          {isFiltered ? (
-            <>
-              {filteredResults.length > 0 ? (
-                filteredResults.map((value, index) => {
-                  return (
-                    <Characters
-                      key={index}
-                      name={value.name}
-                      avatar={value.image}
-                      id={value.id}
-                    />
-                  );
-                })
-              ) : (
-                <div className="innerCard boxShadow character textLeft">
-                  <h3>No results! Try again later</h3>
+          {showData !== undefined ? (
+            showData.map((value, index) => {
+              return (
+                <div key={index}>
+                  <Characters
+                    key={index}
+                    name={value.name}
+                    avatar={value.image}
+                    id={value.id}
+                  />
                 </div>
-              )}
-            </>
+              );
+            })
           ) : (
             <>
-              {showData !== undefined ? (
-                showData.map((value, index) => {
-                  return (
-                    <div key={index}>
-                      <Characters
-                        key={index}
-                        name={value.name}
-                        avatar={value.image}
-                        id={value.id}
-                      />
-                    </div>
-                  );
-                })
-              ) : (
-                <>
-                  <div className="cardShadow textLeft">
-                    <Characters
-                      name="Character Name"
-                      avatar="https://via.placeholder.com/500x500"
-                    />
-                  </div>
-                </>
-              )}
+              <div className="cardShadow textLeft">
+                <Characters
+                  name="Character Name"
+                  avatar="https://via.placeholder.com/500x500"
+                />
+              </div>
             </>
           )}
         </div>
