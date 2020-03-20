@@ -1,46 +1,37 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import './scss/styles.scss';
 
 import Login from './pages/Login';
 import Navigation from './components/nav';
 import Footer from './components/footer';
 
-export default class App extends Component {
-  state = {
-    isLoggedIn: true,
+export default function App({children}) {
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const currentUser = localStorage.username;
+
+  let updateLogin = () => {
+    setIsLoggedIn(true);
   };
 
-  updateLogin = () => {
-    this.setState({
-      isLoggedIn: true,
-    });
-  };
-
-  updateLogout = () => {
-    this.setState({
-      isLoggedIn: false,
-    });
+  let updateLogout = () => {
+    setIsLoggedIn(false);
     localStorage.removeItem('username');
     localStorage.removeItem('password');
     localStorage.removeItem('token');
   };
 
-  render() {
-    const currentUser = localStorage.username;
-
-    return localStorage.getItem('token') !== null && this.state.isLoggedIn ? (
-      <>
-        <div className="navbar">
-          <button className="boldText" onClick={this.updateLogout}>
-            Log out
-          </button>
-        </div>
-        <Navigation title={`Logged in as ${currentUser}`} />
-        <div className="container">{this.props.children}</div>
-        <Footer />
-      </>
-    ) : (
-      <Login updateLoginStatus={this.updateLogin} />
-    );
-  }
+  return localStorage.getItem('token') !== null && isLoggedIn ? (
+    <>
+      <div className="navbar">
+        <button className="boldText" onClick={updateLogout}>
+          Log out
+        </button>
+      </div>
+      <Navigation title={`Logged in as ${currentUser}`} />
+      <div className="container">{children}</div>
+      <Footer />
+    </>
+  ) : (
+    <Login updateLoginStatus={updateLogin} />
+  );
 }

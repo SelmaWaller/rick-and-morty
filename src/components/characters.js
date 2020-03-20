@@ -2,8 +2,7 @@ import React from 'react';
 
 import {Link} from 'react-router-dom';
 
-const Characters = props => {
-  const {id, name, avatar, status, species, gender, episode} = props;
+const Characters = ({id, name, avatar, status, species, gender, episode}) => {
   return (
     <div className="innerCard linkedCard boxShadow character">
       <Link to={`/character-specific/${id}`}>

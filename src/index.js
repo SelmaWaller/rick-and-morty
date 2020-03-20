@@ -9,27 +9,34 @@ import Overview from './pages/Overview';
 import CharacterSpecific from './pages/CharacterSpecific';
 import About from './pages/About';
 import Contact from './pages/Contact';
-import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(
-  <Router>
-    <App>
-      <Switch>
-        <Route path="/" exact component={Overview} />
-        <Route
-          path="/character-specific/:id"
-          exact
-          component={CharacterSpecific}
-        />
-        <Route path="/About" component={About} />
-        <Route path="/Contact" component={Contact} />
-      </Switch>
-    </App>
-  </Router>,
-  document.getElementById('root')
+import {Provider} from 'react-redux';
+import {createStore, compose, applyMiddleware} from 'redux';
+import {devToolsEnhancer} from 'redux-devtools-extension';
+import reducer from './store/reducers/combined-reducers';
+import thunk from 'redux-thunk';
+
+export const store = createStore(
+  reducer,
+  compose(applyMiddleware(thunk), devToolsEnhancer())
 );
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+ReactDOM.render(
+  <Provider store={store}>
+    <Router>
+      <App>
+        <Switch>
+          <Route path="/" exact component={Overview} />
+          <Route
+            path="/character-specific/:id"
+            exact
+            component={CharacterSpecific}
+          />
+          <Route path="/About" component={About} />
+          <Route path="/Contact" component={Contact} />
+        </Switch>
+      </App>
+    </Router>
+  </Provider>,
+  document.getElementById('root')
+);

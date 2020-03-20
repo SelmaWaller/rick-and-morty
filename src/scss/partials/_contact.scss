@@ -106,9 +106,9 @@
       cursor: default;
 
       &:nth-child(2) {
-        @include calcRem(19);
-        bottom: 200px;
-        height: 20px;
+        @include calcRem(18);
+        bottom: 240px;
+        height: 30px;
         cursor: pointer;
         @include gradientText($theme-rick-gradient);
         animation: fadeIn 300ms ease, cardGradient 5s infinite;

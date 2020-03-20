@@ -1,18 +1,14 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 
 import userImg from './../images/userImg.png';
 import Particles from 'react-particles-js';
 import particleSetup from './../components/particles';
 
-export default class Login extends Component {
-  state = {
-    username: '',
-    password: '',
-    usernameError: true,
-    passwordError: true,
-  };
+export default function Login({updateLoginStatus, updateLogin}) {
+  const [usernameError, setUsernameError] = useState(true);
+  const [passwordError, setPasswordError] = useState(true);
 
-  handleChange = input => {
+  let handleChange = input => {
     let name = input.target.name;
     let value = input.target.value;
     let username = /^Johndoe$/;
@@ -20,91 +16,80 @@ export default class Login extends Component {
 
     switch (name) {
       case 'username':
-        username.test(value)
-          ? this.setState({usernameError: false})
-          : this.setState({usernameError: true});
+        username.test(value) ? setUsernameError(false) : setUsernameError(true);
         break;
       case 'password':
-        password.test(value)
-          ? this.setState({passwordError: false})
-          : this.setState({passwordError: true});
+        password.test(value) ? setPasswordError(false) : setPasswordError(true);
         break;
       default:
         break;
     }
-    this.setState({
-      [name]: value,
-    });
   };
 
-  handleSubmit = event => {
+  let handleSubmit = event => {
     event.preventDefault();
     localStorage.setItem('username', 'Johndoe');
     localStorage.setItem('password', '123456');
     localStorage.setItem('token', 'faketoken');
-    this.props.updateLoginStatus();
+    updateLoginStatus();
   };
 
-  render() {
-    const {usernameError, passwordError} = this.state;
+  return (
+    <>
+      <Particles
+        canvasClassName="particles"
+        width="1400px"
+        params={particleSetup}
+      />
+      <div className="loginContainer">
+        <div className="loginCard textCenter innerCard boxShadow">
+          <h1>Log in</h1>
+          <img src={userImg} alt="userImg" />
+          <form onSubmit={handleSubmit}>
+            <h4>
+              <label htmlFor="username">
+                USERNAME{' '}
+                <span className={usernameError ? '' : 'error__hide'}>
+                  {' '}
+                  &nbsp;(Johndoe)
+                </span>
+              </label>
+            </h4>
+            <input
+              onChange={handleChange}
+              id="username"
+              type="text"
+              name="username"
+              placeholder="Johndoe"
+            />
 
-    return (
-      <>
-        <Particles
-          canvasClassName="particles"
-          width="1400px"
-          params={particleSetup}
-        />
-        <div className="loginContainer">
-          <div className="loginCard textCenter innerCard boxShadow">
-            <h1>Log in</h1>
-            <img src={userImg} alt="userImg" />
-            <form onSubmit={this.handleSubmit}>
-              <h4>
-                <label htmlFor="username">
-                  USERNAME{' '}
-                  <span className={usernameError ? '' : 'error__hide'}>
-                    {' '}
-                    &nbsp;(Johndoe)
-                  </span>
-                </label>
-              </h4>
-              <input
-                onChange={this.handleChange}
-                id="username"
-                type="text"
-                name="username"
-                placeholder="Johndoe"
-              />
-
-              <h4>
-                <label htmlFor="password">
-                  PASSWORD{' '}
-                  <span className={passwordError ? '' : 'error__hide'}>
-                    {' '}
-                    &nbsp;(123456)
-                  </span>
-                </label>
-              </h4>
-              <input
-                onChange={this.handleChange}
-                id="password"
-                type="password"
-                name="password"
-                placeholder="••••••••"
-              />
-              <button
-                onClick={this.updateLogin}
-                type="submit"
-                disabled={usernameError || passwordError}
-                className="loginButton"
-              >
-                Log in
-              </button>
-            </form>
-          </div>
+            <h4>
+              <label htmlFor="password">
+                PASSWORD{' '}
+                <span className={passwordError ? '' : 'error__hide'}>
+                  {' '}
+                  &nbsp;(123456)
+                </span>
+              </label>
+            </h4>
+            <input
+              onChange={handleChange}
+              id="password"
+              type="password"
+              name="password"
+              placeholder="••••••••"
+            />
+            <button
+              onClick={updateLogin}
+              type="submit"
+              disabled={usernameError || passwordError}
+              className="loginButton"
+            >
+              Log in
+            </button>
+          </form>
         </div>
-      </>
-    );
-  }
+      </div>
+    </>
+  );
 }
