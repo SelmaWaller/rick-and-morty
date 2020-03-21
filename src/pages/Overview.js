@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import ReactLoading from 'react-loading';
 
 import {CharactersAction} from './../store/actions/characterAction';
+import {CharacterCountAction} from './../store/actions/characterCountAction';
 import {DebouncerAction} from './../store/actions/debouncerAction';
 import Characters from './../components/characters';
 
@@ -11,20 +12,18 @@ function Overview() {
   const dispatch = useDispatch();
 
   const debouncer = useSelector(state => state.DebouncerReducer.debouncer);
+  const characterCount = useSelector(
+    state => state.CharacterCountReducer.characterCount
+  );
 
-  const {
-    characters,
-    name,
-    page,
-    toNextPage,
-    toPrevPage,
-    pageMax,
-    characterCount,
-  } = useSelector(state => state.CharactersReducer);
+  const {characters, name, page, toNextPage, toPrevPage, pageMax} = useSelector(
+    state => state.CharactersReducer
+  );
 
   useEffect(() => {
     dispatch(DebouncerAction(debouncer));
     dispatch(CharactersAction(1, ''));
+    dispatch(CharacterCountAction());
   }, [debouncer, dispatch]);
 
   let handleCharSearch = input => {
