@@ -32,8 +32,8 @@ ReactDOM.render(
             exact
             component={CharacterSpecific}
           />
-          <Route path="/About" component={About} />
-          <Route path="/Contact" component={Contact} />
+          <Route path="/about" component={About} />
+          <Route path="/contact" component={Contact} />
         </Switch>
       </App>
     </Router>
