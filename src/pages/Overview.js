@@ -15,7 +15,6 @@ function Overview() {
   const characterCount = useSelector(
     state => state.CharacterCountReducer.characterCount
   );
-
   const {characters, name, page, toNextPage, toPrevPage, pageMax} = useSelector(
     state => state.CharactersReducer
   );
