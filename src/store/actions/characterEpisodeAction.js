@@ -1,4 +1,4 @@
-import {GET_CHARACTER_EPISODES, NO_CHARACTER_EPISODES} from './actionTypes';
+import {GET_CHARACTER_EPISODES} from './actionTypes';
 
 export const CharacterEpisodeAction = episodeArray => {
   return dispatch => {
