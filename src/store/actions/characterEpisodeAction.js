@@ -12,11 +12,6 @@ export const CharacterEpisodeAction = episodeArray => {
           episodeArray,
           episodes: results,
         });
-      })
-      .catch(() => {
-        dispatch({
-          type: NO_CHARACTER_EPISODES,
-        });
       });
   };
 };
