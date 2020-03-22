@@ -7,7 +7,7 @@ const DebouncerReducer = (state = initialState, action) => {
     case GET_DEBOUNCER:
       return {
         ...state,
-        debouncer: action.debouncer,
+        ...action,
       };
     default:
       return state;
