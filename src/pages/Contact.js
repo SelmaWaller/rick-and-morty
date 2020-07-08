@@ -107,7 +107,7 @@ export default function Contact() {
             />
 
             <label htmlFor="phone">
-              Email<span className="required">* </span>
+              Phone<span className="required">* </span>
               <span className={phoneError ? 'error' : 'error__hide'}>
                 {' '}
                 8 digits starting with 9 or 4
